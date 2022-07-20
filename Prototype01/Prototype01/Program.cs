@@ -27,7 +27,7 @@ namespace Prototype01 {
 
          // Instantiation
          CarRental carRental = new CarRental(start, finish, carModel);
-         RentalService rentalService = new RentalService(pricePerHour, pricePerDay);
+         RentalService rentalService = new RentalService(pricePerHour, pricePerDay, new BrazilTaxService());
 
          rentalService.ProcessInvoice( carRental );
 

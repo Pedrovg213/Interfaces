@@ -4,7 +4,7 @@ using Prototype01.Entities;
 namespace Prototype01.Services {
    internal class RentalService {
 
-      private BrazilTaxService brazilTaxService = new BrazilTaxService();
+      private ITaxService TaxService;
       public double PricePerHour {
          get; private set;
       }
@@ -13,10 +13,11 @@ namespace Prototype01.Services {
       }
 
 
-      public RentalService( double _pricePerHour , double _pricePerDay ) {
+      public RentalService( double _pricePerHour , double _pricePerDay , ITaxService _taxService ) {
 
          PricePerHour = _pricePerHour;
          PricePerDay = _pricePerDay;
+         TaxService = _taxService;
 
       }
 
@@ -28,7 +29,7 @@ namespace Prototype01.Services {
             basicPayment = PricePerHour * Math.Ceiling( duration.TotalHours ) :
             basicPayment = PricePerDay * Math.Ceiling( duration.TotalDays );
 
-         double tax = brazilTaxService.Tax(basicPayment);
+         double tax = TaxService.Tax(basicPayment);
 
          _carRental.Invoice = new Invoice( basicPayment , tax );
 

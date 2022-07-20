@@ -1,6 +1,6 @@
 ﻿
 namespace Prototype01.Services {
-   internal class BrazilTaxService {
+   internal class BrazilTaxService : ITaxService {
 
       public double Tax( double amount ) {
 
