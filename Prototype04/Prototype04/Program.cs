@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Collections.Generic;
+using Prototype04.Entitites;
 
 namespace Prototype04 {
    internal class Program {
@@ -11,14 +12,14 @@ namespace Prototype04 {
          try {
             using ( StreamReader streamReader = File.OpenText( filePath ) ) {
 
-               List<string> list = new List<string>();
+               List<Employee> list = new List<Employee>();
 
                while ( !streamReader.EndOfStream )
-                  list.Add( streamReader.ReadLine() );
+                  list.Add( new Employee( streamReader.ReadLine() ));
 
                list.Sort();
-               foreach ( string str in list )
-                  Console.WriteLine( str );
+               foreach ( Employee emp in list )
+                  Console.WriteLine( emp );
             }
          } catch ( IOException ioe ) {
 
